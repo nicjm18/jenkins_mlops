@@ -1,14 +1,14 @@
 import sys
 from pathlib import Path
-from checks.filesystem_checks import check_required_paths, check_dockerfile_basics
-from checks.secret_scanner import scan_for_secrets
-from report.junit import to_junit_xml
+
+from .checks.filesystem_checks import check_required_paths, check_dockerfile_basics
+from .checks.secret_scanner import scan_for_secrets
+from .reports.junit import to_junit_xml
 
 def main(out_dir="reports"):
     repo_root = Path(__file__).resolve().parents[1]
 
     results = []
-    # 1) Required files and directories
     required = [
         "src",
         "src/cargar_datos.py",
@@ -17,23 +17,18 @@ def main(out_dir="reports"):
         "src/model_deploy.py",
         "Dockerfile",
         "README.md",
-        "pyproject.toml",   # Poetry
-        #"jenkins",          #  Jenkins
+        "pyproject.toml",
+        "jenkins",
     ]
     results += check_required_paths(repo_root, required)
-
-    # 2) Dockerfile
     results += check_dockerfile_basics(repo_root / "Dockerfile")
 
-    # 3) Secrets scanning
-    #    (.git, venv, lockfiles and pkl/db for performance)
     ignore_globs = [
         ".git/**", ".venv/**", "venv/**", "**/__pycache__/**",
         "**/*.pkl", "**/*.db", "models/**", "monitoring.db"
     ]
     results += scan_for_secrets(repo_root, ignore_globs)
 
-    # --- Export JUnit XML and exit code ---
     out_path = repo_root / out_dir
     out_path.mkdir(parents=True, exist_ok=True)
     xml = to_junit_xml(results, "pyops_checks")
@@ -47,3 +42,4 @@ def main(out_dir="reports"):
 
 if __name__ == "__main__":
     main(sys.argv[1] if len(sys.argv) > 1 else "reports")
+
