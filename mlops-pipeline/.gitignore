@@ -1,0 +1,40 @@
+# Entorno virtual de Poetry 
+.venv/
+
+# Archivos generados por Poetry
+poetry.lock  
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# Archivos de Jupyter
+.ipynb_checkpoints/
+
+# Datos 
+src/BD_creditos.xlsx
+*.db
+
+#Modelos
+models/
+*.pkl
+src/creditos.pkl
+
+# Cachés de linters/tests
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Configuración local de VS Code
+.vscode/

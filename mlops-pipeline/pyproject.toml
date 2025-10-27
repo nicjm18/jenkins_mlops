@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "mlops-pipeline"
+version = "0.1.0"
+description = "Pipeline MLOps para carga de datos, EDA, ingeniería de características, entrenamiento, despliegue, evaluación y monitoreo de modelos."
+authors = ["Nico "]
+readme = "readme.md"
+packages = [{ include = "mlops_pipeline", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2"
+numpy = "^2.0"
+scikit-learn = "^1.5"
+matplotlib = "^3.9"
+seaborn = "^0.13"
+joblib = "^1.4"
+openpyxl = "^3.1.2"
+
+fastapi = "^0.115"         
+uvicorn = { extras = ["standard"], version = "^0.30" }
+mlflow = "^2.14"
+plotly = "^5.22"
+xgboost = "^2.1"
+lightgbm = "^4.5"
+python-multipart = "^0.0.20"
+pydantic = "^2.11.9"
+aiofiles = "^24.1.0"
+streamlit = "^1.49.1"
+scipy = "^1.15"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0"
+ipykernel = "^6.29"
+black = "^24.4"
+isort = "^5.13"
+flake8 = "^7.0"
+pytest = "^8.3"
+mypy = "^1.10"
+pre-commit = "^3.7"
+
+[tool.poetry.scripts]
+train = "mlops_pipeline.model_training:main"
+deploy = "mlops_pipeline.model_deploy:main"
+evaluate = "mlops_pipeline.model_evaluation:main"
+monitor = "mlops_pipeline.model_monitoring:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
