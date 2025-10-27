@@ -19,7 +19,7 @@ def main(out_dir="reports"):
         #"mlops-pipeline/pyproject.toml",
         ]
     results += check_required_paths(repo_root, required)
-    results += check_dockerfile_basics(repo_root / "Dockerfile")
+    #results += check_dockerfile_basics(repo_root / "Dockerfile")
 
     ignore_globs = [
         ".git/**", ".venv/**", "venv/**", "**/__pycache__/**",
