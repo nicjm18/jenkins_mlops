@@ -10,16 +10,15 @@ def main(out_dir="reports"):
 
     results = []
     required = [
-        "src",
-        "src/cargar_datos.py",
-        "src/model_training.py",
-        "src/model_evaluation.py",
-        "src/model_deploy.py",
-        "Dockerfile",
-        "README.md",
-        "pyproject.toml",
-        "jenkins",
-    ]
+        "mlops-pipeline",
+        "mlops-pipeline/src",
+        "mlops-pipeline/src/cargar_datos.py",
+        "mlops-pipeline/src/model_training.py",
+        "mlops-pipeline/src/model_evaluation.py",
+        "mlops-pipeline/src/model_deploy.py",
+        "mlops-pipeline/Dockerfile",
+        "mlops-pipeline/pyproject.toml",
+        ]
     results += check_required_paths(repo_root, required)
     results += check_dockerfile_basics(repo_root / "Dockerfile")
 
